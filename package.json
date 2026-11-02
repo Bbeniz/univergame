@@ -1,0 +1,20 @@
+{
+  "name": "univergame",
+  "version": "1.0.0",
+  "description": "UNIVERGAME - Play, Discover, Challenge, Enjoy",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "keywords": [
+    "game",
+    "arcade",
+    "android",
+    "pwa"
+  ],
+  "author": "Univergame Team",
+  "license": "MIT"
+}

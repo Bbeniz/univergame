@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIVERGAME • Play, Discover, Challenge, Enjoy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <div class="logo-area">
+                <i class="fa-solid fa-gamepad" style="color: var(--neon-cyan); font-size: 1.5rem;"></i>
+                <h1>UNIVERGAME</h1>
+            </div>
+            <div class="user-badge-mini" id="userBadge">
+                <i class="fa-solid fa-user-astronaut" style="color: var(--neon-purple);"></i>
+                <span id="headerPseudo">Explorateur</span>
+            </div>
+        </header>
+
+        <!-- Main Views Container -->
+        <main>
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="view active">
+                <div class="card">
+                    <h2>Bienvenue dans ton Univers, <span id="dashPseudo" style="color: var(--neon-cyan);">Explorateur</span> !</h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+                        UNIVERGAME est un univers interactif de divertissement, mini-jeux et découvertes. 
+                        Ici, tu peux explorer des mini-jeux captivants, relever des défis quotidiens, écouter ta musique dans la Music Room et progresser à ton rythme. 
+                        Tout est 100% gratuit, sans abonnement ni publicité intrusive. 
+                        <strong>NOVA</strong>, ton guide robotique personnel, est toujours à tes côtés pour t'accompagner !
+                    </p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fa-solid fa-trophy"></i> Progression</h3>
+                        <p>Niveau <span id="dashLevel">1</span> (<span id="dashXp">0</span> XP)</p>
+                        <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 8px; margin-top: 1rem; overflow: hidden;">
+                            <div id="xpBar" style="background: var(--neon-cyan); width: 0%; height: 100%; transition: width 0.3s;"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fa-solid fa-bolt"></i> Missions du Jour</h3>
+                        <div id="dailyMissionsList" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
+                            <p>• Terminer 3 parties (0/3)</p>
+                            <p>• Atteindre 500 points au total (0/500)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3 style="color: var(--neon-cyan); margin-bottom: 1rem;"><i class="fa-solid fa-rocket"></i> Accès Rapide aux Jeux</h3>
+                    <div class="games-grid">
+                        <div class="game-card" onclick="app.switchView('games'); app.openGame('reflex');">
+                            <h4>Défi Réflexes</h4>
+                            <p>Teste ta rapidité de réaction</p>
+                        </div>
+                        <div class="game-card" onclick="app.switchView('games'); app.openGame('memory');">
+                            <h4>Bataille de Mémoire</h4>
+                            <p>Retrouve toutes les paires</p>
+                        </div>
+                        <div class="game-card" onclick="app.switchView('games'); app.openGame('quiz');">
+                            <h4>Arène des Quiz</h4>
+                            <p>Culture geek, anime & tech</p>
+                        </div>
+                        <div class="game-card" onclick="app.switchView('games'); app.openGame('snake');">
+                            <h4>Serpent Néon</h4>
+                            <p>Le classique revisité futuriste</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Games View -->
+            <section id="view-games" class="view">
+                <h2 style="color: var(--neon-cyan); margin-bottom: 1rem;"><i class="fa-solid fa-gamepad"></i> Les 9 Jeux d'UNIVERGAME</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Découvre les 9 jeux de l'Arène, leurs objectifs et règles. Choisis un jeu et amuse-toi !</p>
+                
+                <div id="gamesHubContainer">
+                    <div class="games-grid">
+                        <div class="game-card" onclick="app.openGame('reflex')">
+                            <h4>1. Défi Réflexes</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Teste ta vitesse de réaction.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Cliquer dès le signal vert.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('memory')">
+                            <h4>2. Bataille de Mémoire</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Associe les cartes paires.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Retrouver toutes les paires.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('quiz')">
+                            <h4>3. Arène des Quiz</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Teste tes connaissances.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Répondre juste aux questions.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('snake')">
+                            <h4>4. Serpent Néon</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Mange, grandis, survis.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Grandir sans collision.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('game2048')">
+                            <h4>5. Fusion 2048</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Combine les blocs numérotés.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Fusionner les nombres.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('tictactoe')">
+                            <h4>6. Morpion</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Aligne 3 symboles.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Aligner 3 pions.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('rps')">
+                            <h4>7. Pierre-Feuille-Ciseaux</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Affronte l'ordinateur.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Battre l'adversaire.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('mystery')">
+                            <h4>8. Nombre Mystère</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Devine le nombre secret.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Trouver le nombre mystère.</span>
+                        </div>
+                        <div class="game-card" onclick="app.openGame('typing')">
+                            <h4>9. Course de Dactylographie</h4>
+                            <p style="font-size: 0.85rem; margin-bottom: 0.4rem;">Vitesse et précision au clavier.</p>
+                            <span style="font-size: 0.75rem; color: var(--neon-cyan);">Objectif : Recopier la phrase au plus vite.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Game Container (hidden initially) -->
+                <div id="activeGameContainer" style="display: none; margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <button class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem; margin: 0;" onclick="app.closeActiveGame()"><i class="fa-solid fa-arrow-left"></i> Retour aux jeux</button>
+                        <button class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem; margin: 0; border-color: var(--neon-cyan); color: var(--neon-cyan);" onclick="app.showGameRules()"><i class="fa-solid fa-circle-question"></i> Revoir les règles</button>
+                    </div>
+                    <div id="gameEngine" class="card" style="text-align: center; min-height: 300px;">
+                        <!-- Game rendered here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Music Room View -->
+            <section id="view-music" class="view">
+                <h2 style="color: var(--neon-cyan); margin-bottom: 1rem;"><i class="fa-solid fa-music"></i> Music Room</h2>
+                <div class="card">
+                    <p>Lecteur audio local et ambiance futuriste. Importe tes propres fichiers audio (MP3, WAV) pour les écouter en jouant.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <input type="file" id="audioFileInput" accept="audio/*" multiple class="form-control" style="margin-bottom: 1rem;">
+                        <audio id="audioPlayer" controls style="width: 100%; margin-top: 1rem; display: none;"></audio>
+                    </div>
+                    <div id="playlistContainer" style="margin-top: 1rem; text-align: left;">
+                        <h4 style="color: var(--neon-purple); margin-bottom: 0.5rem;">Playlist locale :</h4>
+                        <ul id="playlistList" style="list-style: none; color: var(--text-secondary);">
+                            <li>Aucun fichier chargé pour l'instant.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile View -->
+            <section id="view-profile" class="view">
+                <h2 style="color: var(--neon-cyan); margin-bottom: 1rem;"><i class="fa-solid fa-user-astronaut"></i> Mon Univers</h2>
+                <div class="card">
+                    <div class="form-group">
+                        <label>Modifier ton pseudonyme :</label>
+                        <input type="text" id="editPseudoInput" class="form-control" maxlength="20">
+                    </div>
+                    <button class="btn" onclick="app.saveProfile()">Mettre à jour le profil</button>
+                </div>
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h3 style="color: var(--neon-purple);"><i class="fa-solid fa-chart-bar"></i> Statistiques & Records</h3>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;" id="profileStatsText">Parties jouées : 0 | Meilleur score global : 0</p>
+                </div>
+            </section>
+
+            <!-- About View -->
+            <section id="view-about" class="view">
+                <h2 style="color: var(--neon-cyan); margin-bottom: 1rem;"><i class="fa-solid fa-circle-info"></i> À propos & Contact</h2>
+                <div class="card">
+                    <h3 style="color: var(--neon-purple); margin-bottom: 0.8rem;">Présentation officielle</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
+                        « Je suis <strong>BEN KAPELA</strong>, unique créateur et développeur du projet, basé à Kinshasa, en République démocratique du Congo (RDC).<br><br>
+                        UNIVERGAME est un projet personnel entièrement imaginé et conçu par mes soins, consacré au divertissement, aux jeux et à la découverte. Il s'inscrit dans l'univers de la technologie et du développement numérique, avec l'ambition de proposer une expérience agréable et accessible à tous, sans équipe ni intermédiaire. »
+                    </p>
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;">
+                        <p style="color: var(--text-primary); font-weight: bold; margin-bottom: 0.5rem;">Contact & Informations</p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <i class="fa-solid fa-user" style="color: var(--neon-cyan); width: 20px;"></i> Ben Kapela (Créateur unique)
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <i class="fa-solid fa-envelope" style="color: var(--neon-cyan); width: 20px;"></i> <a href="mailto:benkapela2@gmail.com" style="color: var(--neon-cyan); text-decoration: none;">benkapela2@gmail.com</a>
+                        </p>
+                        <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                            <i class="fa-brands fa-whatsapp" style="color: #25d366; width: 20px; font-size: 1.2rem;"></i> WhatsApp : <a href="https://wa.me/243971474966" target="_blank" style="color: #25d366; text-decoration: none; font-weight: bold;">+243 971 474 966</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="app.switchView('dashboard')">
+                <i class="fa-solid fa-house"></i>
+                <span>Accueil</span>
+            </button>
+            <button class="nav-item" onclick="app.switchView('games')">
+                <i class="fa-solid fa-gamepad"></i>
+                <span>Jeux</span>
+            </button>
+            <button class="nav-item" onclick="app.switchView('music')">
+                <i class="fa-solid fa-music"></i>
+                <span>Musique</span>
+            </button>
+            <button class="nav-item" onclick="app.switchView('profile')">
+                <i class="fa-solid fa-user"></i>
+                <span>Profil</span>
+            </button>
+            <button class="nav-item" onclick="app.switchView('about')">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>À propos</span>
+            </button>
+        </nav>
+
+        <!-- Floating NOVA Guide Button -->
+        <div class="nova-float" onclick="app.openNovaModal()" title="Parler avec NOVA">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <!-- Onboarding / Pseudo Modal -->
+        <div id="onboardingModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <h2>Bienvenue dans UNIVERGAME</h2>
+                <p>Je suis <strong>NOVA</strong>, ton guide robotique. Entre ton pseudonyme pour commencer l'aventure (gratuit, sans inscription).</p>
+                <div class="form-group">
+                    <label>Pseudonyme :</label>
+                    <input type="text" id="onboardingPseudo" class="form-control" placeholder="ex: CyberPilote" maxlength="20">
+                </div>
+                <button class="btn" onclick="app.completeOnboarding()">COMMENCER L'AVENTURE</button>
+            </div>
+        </div>
+
+        <!-- NOVA Chat Modal -->
+        <div id="novaModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content" style="text-align: left;">
+                <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-robot" style="font-size: 2rem; color: var(--neon-cyan);"></i>
+                    <h2 style="margin: 0; font-size: 1.3rem;">NOVA • Guide Virtuel</h2>
+                </div>
+                <div id="novaDialogueBox" style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; height: 180px; overflow-y: auto; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.4;">
+                    Salut ! Je suis NOVA. Comment puis-je t'aider dans UNIVERGAME aujourd'hui ?
+                </div>
+                <div class="form-group" style="margin-bottom: 0.8rem;">
+                    <input type="text" id="novaUserInput" class="form-control" placeholder="Pose une question à NOVA..." onkeypress="if(event.key==='Enter') app.sendNovaMessage()">
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn" onclick="app.sendNovaMessage()">Envoyer</button>
+                    <button class="btn btn-secondary" onclick="app.closeNovaModal()" style="margin: 0;">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
